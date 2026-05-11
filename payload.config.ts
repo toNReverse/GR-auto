@@ -29,9 +29,9 @@ export default buildConfig({
       titleSuffix: '— Admin Concessionario',
     },
     components: {
-      beforeDashboard: [
-        '@/lib/payload/admin/components/Dashboard#AdminDashboard',
-      ],
+    // beforeDashboard: [
+    //   '@/lib/payload/admin/components/Dashboard#AdminDashboard',
+    // ],
     },
   },
   i18n: {

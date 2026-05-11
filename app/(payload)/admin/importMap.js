@@ -29,7 +29,6 @@ import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0
 import { ThumbnailCell as ThumbnailCell_2886517a035b9e3eb36c2789c312bc50 } from '@/lib/payload/admin/components/cells/ThumbnailCell'
 import { BulkUpdateStatus as BulkUpdateStatus_ff645032e7caa909efa7f705d0d9f39d } from '@/lib/payload/admin/components/BulkUpdateStatus'
 import { DuplicateVehicleButton as DuplicateVehicleButton_54e9d0358eaaf22f0fb40e3390fd29c0 } from '@/lib/payload/admin/components/DuplicateVehicleButton'
-import { AdminDashboard as AdminDashboard_e9f62490dac6beb9217e99581be44510 } from '@/lib/payload/admin/components/Dashboard'
 import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
@@ -66,7 +65,6 @@ export const importMap = {
   "@/lib/payload/admin/components/cells/ThumbnailCell#ThumbnailCell": ThumbnailCell_2886517a035b9e3eb36c2789c312bc50,
   "@/lib/payload/admin/components/BulkUpdateStatus#BulkUpdateStatus": BulkUpdateStatus_ff645032e7caa909efa7f705d0d9f39d,
   "@/lib/payload/admin/components/DuplicateVehicleButton#DuplicateVehicleButton": DuplicateVehicleButton_54e9d0358eaaf22f0fb40e3390fd29c0,
-  "@/lib/payload/admin/components/Dashboard#AdminDashboard": AdminDashboard_e9f62490dac6beb9217e99581be44510,
   "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }
