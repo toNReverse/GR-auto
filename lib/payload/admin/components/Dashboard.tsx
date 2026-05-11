@@ -57,17 +57,12 @@ export const AdminDashboard: React.FC = async () => {
   ] = await Promise.all([
     payload.count({ collection: 'vehicles', where: { _status: { equals: 'published' } } }),
     payload.count({ collection: 'vehicles', where: { _status: { equals: 'draft' } } }),
-    payload.count({ collection: 'vehicles', where: { status: { equals: 'venduto' } } }),
+    payload.count({ collection: 'vehicles', where: { availability: { equals: 'sold' } } }),
     payload.find({
       collection: 'vehicles',
       depth: 0,
       limit: 5,
-      where: {
-        or: [
-          { 'gallery.0.image': { exists: false } as never },
-          { gallery: { equals: null } },
-        ],
-      },
+      where: { gallery: { exists: false } },
     }),
     payload.find({
       collection: 'vehicles',
@@ -80,12 +75,7 @@ export const AdminDashboard: React.FC = async () => {
       depth: 1,
       limit: 5,
       sort: '-createdAt',
-      where: {
-        and: [
-          { status: { equals: 'nuovo' } },
-          { createdAt: { greater_than: sevenDaysAgo } },
-        ],
-      },
+      where: { createdAt: { greater_than: sevenDaysAgo } },
     }),
   ])
 
