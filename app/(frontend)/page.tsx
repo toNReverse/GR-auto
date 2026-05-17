@@ -5,6 +5,8 @@ export const dynamic = 'force-dynamic'
 import { Hero } from '@/components/home/Hero'
 import { CategoryGrid } from '@/components/home/CategoryGrid'
 import { Services } from '@/components/home/Services'
+import { SellYourCar } from '@/components/home/SellYourCar'
+import { Stats } from '@/components/home/Stats'
 import { FinalCTA } from '@/components/home/FinalCTA'
 import { Section, SectionHeader } from '@/components/ui/section'
 import { Button } from '@/components/ui/button'
@@ -30,7 +32,7 @@ export default async function HomePage() {
         <Section className="py-16">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeader
-              eyebrow="Selezione"
+              eyebrow="In vetrina"
               title="Veicoli in evidenza"
               description="Le proposte del momento, scelte per qualità, prezzo o disponibilità immediata."
             />
@@ -48,13 +50,12 @@ export default async function HomePage() {
         </Section>
       ) : null}
 
-      <Section className="py-16">
-        <SectionHeader
-          eyebrow="Esplora il catalogo"
-          title="Trova quello che fa per te"
-          description="Filtra per carrozzeria o alimentazione: ti portiamo direttamente al sotto-insieme giusto."
-        />
-        <CategoryGrid />
+      <Section className="py-12">
+        <SellYourCar />
+      </Section>
+
+      <Section className="py-12">
+        <Stats vehicles={all.length} />
       </Section>
 
       <Section className="py-16">
@@ -63,6 +64,15 @@ export default async function HomePage() {
           title="Quello che facciamo, oltre alla vendita"
         />
         <Services />
+      </Section>
+
+      <Section className="py-16">
+        <SectionHeader
+          eyebrow="Esplora il catalogo"
+          title="Trova quello che fa per te"
+          description="Filtra per carrozzeria o alimentazione: ti portiamo direttamente al sotto-insieme giusto."
+        />
+        <CategoryGrid />
       </Section>
 
       <Section className="pb-20 pt-4">

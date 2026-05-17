@@ -56,15 +56,6 @@ export function Header({
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          {phone ? (
-            <a
-              href={`tel:${phone.replace(/\s/g, '')}`}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-900 hover:text-brand-700"
-            >
-              <Phone className="h-4 w-4" />
-              {phone}
-            </a>
-          ) : null}
           <Button asChild size="sm">
             <Link href="/veicoli">Sfoglia veicoli</Link>
           </Button>

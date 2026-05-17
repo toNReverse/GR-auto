@@ -1,7 +1,27 @@
 import Link from 'next/link'
+import {
+  Facebook,
+  Instagram,
+  Youtube,
+  Linkedin,
+  Music2,
+} from 'lucide-react'
 import type { SiteSetting } from '@/payload-types'
 
-const platformIcons: Record<string, string> = {
+type SocialPlatform = NonNullable<SiteSetting['social']>[number]['platform']
+
+const platformIcons: Record<
+  SocialPlatform,
+  React.ComponentType<{ className?: string }>
+> = {
+  facebook: Facebook,
+  instagram: Instagram,
+  youtube: Youtube,
+  tiktok: Music2,
+  linkedin: Linkedin,
+}
+
+const platformLabels: Record<SocialPlatform, string> = {
   facebook: 'Facebook',
   instagram: 'Instagram',
   youtube: 'YouTube',
@@ -76,19 +96,24 @@ export function Footer({ settings }: { settings: SiteSetting }) {
           </ul>
 
           {settings.social && settings.social.length > 0 ? (
-            <ul className="mt-4 flex flex-wrap gap-2 text-xs">
-              {settings.social.map((s) => (
-                <li key={s.id ?? s.url}>
-                  <a
-                    href={s.url}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="rounded-full border border-ink-200 px-3 py-1 hover:bg-white"
-                  >
-                    {platformIcons[s.platform] ?? s.platform}
-                  </a>
-                </li>
-              ))}
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {settings.social.map((s) => {
+                const Icon = platformIcons[s.platform]
+                const label = platformLabels[s.platform]
+                return (
+                  <li key={s.id ?? s.url}>
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label={label}
+                      className="grid h-9 w-9 place-items-center rounded-full border border-ink-200 text-ink-700 hover:bg-white hover:text-brand-700"
+                    >
+                      <Icon className="h-4 w-4" />
+                    </a>
+                  </li>
+                )
+              })}
             </ul>
           ) : null}
         </div>
