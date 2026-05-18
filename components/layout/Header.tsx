@@ -33,7 +33,7 @@ export function Header({
   return (
     <header className="sticky top-0 z-40 w-full border-b border-ink-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2.5 font-semibold tracking-tight" aria-label="GR AUTO">
+        <Link href="/" className="flex items-center gap-2.5" aria-label="GR AUTO">
           {logoUrl ? (
             <Image
               src={logoUrl}
@@ -44,17 +44,14 @@ export function Header({
               priority
             />
           ) : (
-            <>
-              <Image
-                src="/logo-gr-auto.jpg"
-                alt="GR AUTO"
-                width={40}
-                height={40}
-                className="h-10 w-10 rounded-md object-cover shadow-sm"
-                priority
-              />
-              <span className="text-base uppercase tracking-wide text-ink-900">GR AUTO</span>
-            </>
+            <span className="flex flex-col leading-none">
+              <span className="text-lg font-extrabold uppercase tracking-wider text-ink-900">
+                GR <span className="text-brand-600">AUTO</span>
+              </span>
+              <span className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.18em] text-ink-500">
+                Vendita auto e moto
+              </span>
+            </span>
           )}
         </Link>
 
