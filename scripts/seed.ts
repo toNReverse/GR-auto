@@ -564,18 +564,18 @@ async function main() {
   await payload.updateGlobal({
     slug: 'siteSettings',
     data: {
-      name: 'AutoShowroom',
-      tagline: 'Auto usate, km 0 e aziendali in Italia.',
-      phone: '+39 02 1234567',
-      whatsapp: '+393331234567',
-      email: 'info@example.it',
-      companyName: 'AutoShowroom S.r.l.',
-      vat: '01234567890',
-      rea: 'MI-1234567',
+      name: 'GR AUTO',
+      tagline: 'Vendita auto e moto a Catania.',
+      phone: '+39 095 0000000',
+      whatsapp: '+393330000000',
+      email: 'info@grauto.it',
+      companyName: 'GR AUTO di Gabriele Russo',
+      vat: '00000000000',
+      rea: 'CT-0000000',
       footerText:
-        'AutoShowroom è un nome di fantasia usato per il sito demo. Sostituire con i dati reali del concessionario.',
-      colorPrimary: '#3a52c4',
-      colorAccent: '#0f172a',
+        "GR AUTO di Gabriele Russo opera nel settore automobilistico a Catania, offrendo auto e moto selezionate, controllate e garantite. La nostra missione è rendere il processo di acquisto semplice, sicuro e trasparente.",
+      colorPrimary: '#dc2d12',
+      colorAccent: '#232628',
     } as never,
   })
   console.log('✓ siteSettings aggiornati')

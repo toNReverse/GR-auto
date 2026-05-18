@@ -31,9 +31,9 @@ export function Services() {
         return (
           <li
             key={it.title}
-            className="rounded-xl border border-ink-200 bg-white p-5"
+            className="rounded-xl border border-ink-200 bg-white p-5 transition-shadow hover:shadow-md"
           >
-            <span className="grid h-10 w-10 place-items-center rounded-lg bg-brand-100 text-brand-700">
+            <span className="grid h-10 w-10 place-items-center rounded-lg bg-brand-600 text-white">
               <Icon className="h-5 w-5" />
             </span>
             <h3 className="mt-4 text-base font-semibold text-ink-900">
