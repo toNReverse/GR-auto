@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
@@ -18,9 +19,11 @@ const links = [
 export function Header({
   siteName,
   phone,
+  logoUrl,
 }: {
   siteName: string
   phone?: string | null
+  logoUrl?: string | null
 }) {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
@@ -28,13 +31,31 @@ export function Header({
     href === '/' ? pathname === '/' : pathname?.startsWith(href)
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-ink-200 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70">
+    <header className="sticky top-0 z-40 w-full border-b border-ink-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="grid h-8 w-8 place-items-center rounded-md bg-gradient-to-br from-brand-500 to-brand-700 text-white">
-            ◆
-          </span>
-          <span className="text-base">{siteName}</span>
+        <Link href="/" className="flex items-center gap-2.5 font-semibold tracking-tight" aria-label="GR AUTO">
+          {logoUrl ? (
+            <Image
+              src={logoUrl}
+              alt="GR AUTO"
+              width={160}
+              height={48}
+              className="h-10 w-auto"
+              priority
+            />
+          ) : (
+            <>
+              <Image
+                src="/logo-gr-auto.jpg"
+                alt="GR AUTO"
+                width={40}
+                height={40}
+                className="h-10 w-10 rounded-md object-cover shadow-sm"
+                priority
+              />
+              <span className="text-base uppercase tracking-wide text-ink-900">GR AUTO</span>
+            </>
+          )}
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -44,10 +65,10 @@ export function Header({
               href={l.href}
               aria-current={isActive(l.href) ? 'page' : undefined}
               className={cn(
-                'rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                'relative rounded-md px-3 py-2 text-sm font-medium uppercase tracking-wide transition-colors',
                 isActive(l.href)
-                  ? 'bg-brand-50 text-brand-700'
-                  : 'text-ink-700 hover:bg-ink-100 hover:text-ink-900',
+                  ? 'text-brand-600 after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:bg-brand-600'
+                  : 'text-ink-700 hover:text-brand-600',
               )}
             >
               {l.label}
@@ -86,8 +107,8 @@ export function Header({
               aria-current={isActive(l.href) ? 'page' : undefined}
               onClick={() => setOpen(false)}
               className={cn(
-                'rounded-md px-3 py-2 text-sm font-medium hover:bg-ink-100',
-                isActive(l.href) ? 'text-brand-700' : 'text-ink-900',
+                'rounded-md px-3 py-2 text-sm font-medium uppercase tracking-wide hover:bg-ink-100',
+                isActive(l.href) ? 'text-brand-600' : 'text-ink-900',
               )}
             >
               {l.label}

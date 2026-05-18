@@ -1,4 +1,4 @@
-# Concessionario Auto — Sito vetrina + CMS
+# GR AUTO — Sito vetrina + CMS
 
 Sito web per concessionario di auto usate / km 0 con CMS integrato. Il cliente
 gestisce in autonomia veicoli, pagine, lead e impostazioni dall'admin.

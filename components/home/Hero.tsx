@@ -26,20 +26,25 @@ export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number 
   }
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-ink-900 text-white">
+    <section className="relative overflow-hidden bg-gradient-to-br from-ink-900 via-ink-900 to-ink-800 text-white">
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.15),transparent_50%)]"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(220,45,18,0.25),transparent_55%)]"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 h-1 bg-brand-600"
       />
       <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:flex-row lg:items-center lg:gap-12 lg:px-8 lg:py-28">
         <div className="flex-1">
-          <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/90 ring-1 ring-inset ring-white/20">
+          <span className="inline-flex items-center gap-2 rounded-full bg-brand-600/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-400 ring-1 ring-inset ring-brand-600/30">
+            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand-500" />
             {totalCount} veicoli pronti consegna
           </span>
           <h1 className="mt-5 text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-            La tua prossima auto, già selezionata.
+            Scegli la tua auto <span className="text-brand-500">ideale</span>.
           </h1>
-          <p className="mt-4 max-w-xl text-pretty text-base text-white/85 sm:text-lg">
+          <p className="mt-4 max-w-xl text-pretty text-base text-white/80 sm:text-lg">
             Auto usate, km 0 e aziendali controllate punto per punto. Garanzia,
             finanziamento su misura e permuta valutata in giornata.
           </p>
@@ -47,9 +52,9 @@ export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number 
 
         <form
           onSubmit={onSubmit}
-          className="flex-1 rounded-2xl border border-white/10 bg-white/95 p-5 text-ink-900 shadow-2xl ring-1 ring-black/5 backdrop-blur sm:p-6"
+          className="flex-1 rounded-2xl border-t-4 border-brand-600 bg-white p-5 text-ink-900 shadow-2xl ring-1 ring-black/5 sm:p-6"
         >
-          <div className="text-sm font-semibold text-ink-900">Trova la tua auto</div>
+          <div className="text-sm font-semibold uppercase tracking-wider text-ink-900">Trova la tua auto</div>
           <div className="mt-4 grid gap-3 sm:grid-cols-3">
             <label className="block text-xs">
               <span className="mb-1 block text-ink-700">Marca</span>

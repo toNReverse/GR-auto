@@ -30,7 +30,7 @@ export function TopBar({ settings }: { settings: SiteSetting }) {
   if (!hasPhone && !hasSocial) return null
 
   return (
-    <div className="hidden bg-brand-900 text-white/90 md:block">
+    <div className="hidden bg-ink-900 text-white/90 md:block">
       <div className="mx-auto flex h-9 max-w-7xl items-center justify-between gap-4 px-4 text-xs sm:px-6 lg:px-8">
         <div className="flex items-center gap-5">
           {settings.phone ? (

@@ -13,17 +13,35 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
   ),
   title: {
-    default: 'Concessionario Auto',
-    template: '%s · Concessionario Auto',
+    default: 'GR AUTO',
+    template: '%s · GR AUTO',
   },
   description:
     'Auto usate, km 0, aziendali. Selezione di veicoli garantiti con servizio di finanziamento e permuta.',
+  icons: {
+    icon: [
+      { url: '/logo-gr-auto.jpg', type: 'image/jpeg' },
+    ],
+    shortcut: '/logo-gr-auto.jpg',
+    apple: '/logo-gr-auto.jpg',
+  },
   openGraph: {
     type: 'website',
     locale: 'it_IT',
-    siteName: 'Concessionario Auto',
+    siteName: 'GR AUTO',
+    images: [
+      {
+        url: '/logo-gr-auto.jpg',
+        width: 1200,
+        height: 1200,
+        alt: 'GR AUTO',
+      },
+    ],
   },
-  twitter: { card: 'summary_large_image' },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/logo-gr-auto.jpg'],
+  },
   robots: { index: true, follow: true },
 }
 
