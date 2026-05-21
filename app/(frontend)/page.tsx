@@ -8,6 +8,7 @@ import { Services } from '@/components/home/Services'
 import { SellYourCar } from '@/components/home/SellYourCar'
 import { Stats } from '@/components/home/Stats'
 import { FinalCTA } from '@/components/home/FinalCTA'
+import { GoogleReviews } from '@/components/home/GoogleReviews'
 import { Section, SectionHeader } from '@/components/ui/section'
 import { Button } from '@/components/ui/button'
 import { VehicleCard } from '@/components/vehicles/VehicleCard'
@@ -49,6 +50,10 @@ export default async function HomePage() {
           </ul>
         </Section>
       ) : null}
+
+      <Section className="py-12">
+        <GoogleReviews />
+      </Section>
 
       <Section className="py-12">
         <SellYourCar />
