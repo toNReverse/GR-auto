@@ -54,16 +54,20 @@ type Service = {
 }
 
 type ServiceCategory = {
+  slug: string
   icon: React.ComponentType<{ className?: string }>
   title: string
+  shortTitle: string
   intro: string
   services: Service[]
 }
 
 const categories: ServiceCategory[] = [
   {
+    slug: 'vendita-consulenza',
     icon: Sparkles,
     title: 'Vendita e Consulenza',
+    shortTitle: 'Vendita',
     intro:
       "Ti aiutiamo a scegliere l'auto giusta — non quella che ci conviene vendere.",
     services: [
@@ -102,8 +106,10 @@ const categories: ServiceCategory[] = [
     ],
   },
   {
+    slug: 'finanziari-assicurativi',
     icon: CreditCard,
     title: 'Servizi Finanziari e Assicurativi',
+    shortTitle: 'Finanza & Assicurazioni',
     intro:
       "Un unico interlocutore per rata, polizza e tranquillità mentale.",
     services: [
@@ -128,8 +134,10 @@ const categories: ServiceCategory[] = [
     ],
   },
   {
+    slug: 'usato',
     icon: Repeat,
     title: 'Gestione dell’usato',
+    shortTitle: 'Usato',
     intro:
       "La tua vecchia auto non è un problema da risolvere: è parte della trattativa.",
     services: [
@@ -160,8 +168,10 @@ const categories: ServiceCategory[] = [
     ],
   },
   {
+    slug: 'burocrazia-consegna',
     icon: FileText,
     title: 'Burocrazia e Consegna',
+    shortTitle: 'Burocrazia',
     intro:
       "I servizi 'scontati' ma vitali: ti azzeriamo code, errori e tempi morti.",
     services: [
@@ -185,8 +195,10 @@ const categories: ServiceCategory[] = [
     ],
   },
   {
+    slug: 'post-vendita',
     icon: Wrench,
     title: 'Post-vendita e preparazione',
+    shortTitle: 'Post-vendita',
     intro:
       "Quando ritiri l'auto, è già pronta per i prossimi anni — non per la prima officina.",
     services: [
@@ -313,40 +325,54 @@ export default function ServiziPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-ink-900 via-ink-900 to-ink-800 text-white">
+      <section className="relative overflow-hidden bg-white">
+        <div aria-hidden className="absolute inset-x-0 top-0 h-1 bg-brand-600" />
         <div
           aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(220,45,18,0.25),transparent_55%)]"
+          className="absolute -top-32 right-0 h-96 w-96 rounded-full bg-brand-50 blur-3xl"
         />
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-0 h-1 bg-brand-600"
-        />
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
-          <span className="inline-flex items-center gap-2 rounded-full bg-brand-600/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-400 ring-1 ring-inset ring-brand-600/30">
-            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand-500" />
-            Servizi
-          </span>
-          <h1 className="mt-5 max-w-3xl text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-            Non ti consegniamo solo le chiavi.{' '}
-            <span className="text-brand-500">
-              Ti togliamo ogni preoccupazione.
+
+        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700 ring-1 ring-inset ring-brand-200">
+              <span
+                aria-hidden
+                className="h-1.5 w-1.5 rounded-full bg-brand-600"
+              />
+              Servizi
             </span>
-          </h1>
-          <p className="mt-5 max-w-2xl text-pretty text-base text-white/80 sm:text-lg">
-            Dietro a una compravendita c&apos;è un ecosistema di servizi
-            pensato per azzerare lo stress di chi compra e di chi vende.
-            Ecco tutto quello che facciamo per te, dalla prima telefonata al
-            post-vendita.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg">
-              <Link href="#servizi">Vedi tutti i servizi</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link href="/contatti">Parla con noi</Link>
-            </Button>
+            <h1 className="mt-5 text-balance text-4xl font-semibold tracking-tight text-ink-900 sm:text-5xl lg:text-6xl">
+              Tutto quello che facciamo per te,{' '}
+              <span className="text-brand-600">in 5 aree</span>.
+            </h1>
+            <p className="mt-5 max-w-2xl text-pretty text-base text-ink-700 sm:text-lg">
+              Dietro a una compravendita c&apos;è un ecosistema di servizi
+              pensato per azzerare lo stress di chi compra e di chi vende.
+              Scegli da dove partire.
+            </p>
           </div>
+
+          <ul className="mt-10 grid grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+            {categories.map((cat) => (
+              <li key={cat.slug}>
+                <Link
+                  href={`#${cat.slug}`}
+                  className="group flex h-full flex-col rounded-xl border border-ink-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-brand-600 hover:shadow-md"
+                >
+                  <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand-50 text-brand-700 transition-colors group-hover:bg-brand-600 group-hover:text-white">
+                    <cat.icon className="h-5 w-5" />
+                  </div>
+                  <h2 className="mt-3 text-sm font-semibold leading-snug text-ink-900">
+                    {cat.shortTitle}
+                  </h2>
+                  <p className="mt-1 text-xs text-ink-500">
+                    {cat.services.length}{' '}
+                    {cat.services.length === 1 ? 'servizio' : 'servizi'}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -434,7 +460,7 @@ export default function ServiziPage() {
 
           <div className="space-y-12">
             {categories.map((cat) => (
-              <div key={cat.title}>
+              <div key={cat.slug} id={cat.slug} className="scroll-mt-24">
                 <div className="mb-6 flex items-start gap-4">
                   <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand-600 text-white">
                     <cat.icon className="h-5 w-5" />
