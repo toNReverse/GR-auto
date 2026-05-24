@@ -369,7 +369,7 @@ export default function ChiSiamoPage() {
                 <Button asChild size="lg">
                   <Link href="/veicoli">
                     <Search className="h-4 w-4" />
-                    Sfoglia i veicoli
+                    Tutti i Veicoli
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">

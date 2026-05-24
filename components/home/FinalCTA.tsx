@@ -27,7 +27,7 @@ export function FinalCTA() {
             <Link href="/contatti">Scrivici</Link>
           </Button>
           <Button asChild size="lg" className="bg-white text-ink-900 hover:bg-white/90">
-            <Link href="/veicoli">Sfoglia il catalogo</Link>
+            <Link href="/veicoli">Tutti i Veicoli</Link>
           </Button>
         </div>
       </div>
