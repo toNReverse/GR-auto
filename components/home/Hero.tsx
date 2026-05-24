@@ -1,7 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Select } from '@/components/ui/select'
@@ -10,11 +11,29 @@ import { fuelLabels } from '@/lib/utils/labels'
 
 const priceOptions = [10000, 15000, 20000, 25000, 30000, 40000, 60000]
 
+const heroSlides = [
+  '/hero/hero-1.jpg',
+  '/hero/hero-2.jpg',
+  '/hero/hero-3.jpg',
+  '/hero/hero-4.jpg',
+]
+
+const SLIDE_INTERVAL_MS = 5000
+
 export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number }) {
   const router = useRouter()
   const [marca, setMarca] = useState('')
   const [prezzoMax, setPrezzoMax] = useState('')
   const [fuel, setFuel] = useState('')
+  const [slide, setSlide] = useState(0)
+
+  useEffect(() => {
+    if (heroSlides.length < 2) return
+    const id = setInterval(() => {
+      setSlide((s) => (s + 1) % heroSlides.length)
+    }, SLIDE_INTERVAL_MS)
+    return () => clearInterval(id)
+  }, [])
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -27,6 +46,25 @@ export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number 
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-ink-900 via-ink-900 to-ink-800 text-white">
+      <div aria-hidden className="absolute inset-0">
+        {heroSlides.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt=""
+            fill
+            priority={i === 0}
+            sizes="100vw"
+            className={`object-cover transition-opacity duration-[1500ms] ease-in-out ${
+              i === slide ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
+      </div>
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-r from-ink-900/85 via-ink-900/70 to-ink-900/40"
+      />
       <div
         aria-hidden
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(220,45,18,0.25),transparent_55%)]"
@@ -35,7 +73,7 @@ export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number 
         aria-hidden
         className="absolute inset-x-0 bottom-0 h-1 bg-brand-600"
       />
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:flex-row lg:items-center lg:gap-12 lg:px-8 lg:py-28">
+      <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-4 py-20 sm:px-6 sm:py-28 lg:flex-row lg:items-center lg:gap-12 lg:px-8 lg:py-36">
         <div className="flex-1">
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-600/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-400 ring-1 ring-inset ring-brand-600/30">
             <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand-500" />

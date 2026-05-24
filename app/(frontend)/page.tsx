@@ -6,7 +6,6 @@ import { Hero } from '@/components/home/Hero'
 import { CategoryGrid } from '@/components/home/CategoryGrid'
 import { Services } from '@/components/home/Services'
 import { SellYourCar } from '@/components/home/SellYourCar'
-import { Stats } from '@/components/home/Stats'
 import { FinalCTA } from '@/components/home/FinalCTA'
 import { GoogleReviews } from '@/components/home/GoogleReviews'
 import { Section, SectionHeader } from '@/components/ui/section'
@@ -51,19 +50,15 @@ export default async function HomePage() {
         </Section>
       ) : null}
 
-      <Section className="py-12">
-        <GoogleReviews />
-      </Section>
-
-      <Section className="py-12">
+      <Section className="py-10">
         <SellYourCar />
       </Section>
 
       <Section className="py-12">
-        <Stats vehicles={all.length} />
+        <GoogleReviews />
       </Section>
 
-      <Section className="py-16">
+      <Section className="py-10">
         <SectionHeader
           eyebrow="Servizi"
           title="Quello che facciamo, oltre alla vendita"
@@ -71,7 +66,7 @@ export default async function HomePage() {
         <Services />
       </Section>
 
-      <Section className="py-16">
+      <Section className="py-10">
         <SectionHeader
           eyebrow="Esplora il catalogo"
           title="Trova quello che fa per te"
@@ -80,7 +75,7 @@ export default async function HomePage() {
         <CategoryGrid />
       </Section>
 
-      <Section className="pb-20 pt-4">
+      <Section className="pb-10 pt-4">
         <FinalCTA />
       </Section>
     </>
