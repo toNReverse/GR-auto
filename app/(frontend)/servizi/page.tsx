@@ -632,7 +632,7 @@ export default function ServiziPage() {
                 <Button asChild size="lg" variant="outline">
                   <Link href="/veicoli">
                     <Search className="h-4 w-4" />
-                    Sfoglia veicoli
+                    Tutti i Veicoli
                   </Link>
                 </Button>
               </div>

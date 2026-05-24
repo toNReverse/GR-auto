@@ -75,7 +75,7 @@ export function Header({
 
         <div className="hidden items-center gap-3 md:flex">
           <Button asChild size="sm">
-            <Link href="/veicoli">Sfoglia veicoli</Link>
+            <Link href="/veicoli">Tutti i Veicoli</Link>
           </Button>
         </div>
 
