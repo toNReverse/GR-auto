@@ -15,7 +15,6 @@ const heroSlides = [
   '/hero/hero-1.jpg',
   '/hero/hero-2.jpg',
   '/hero/hero-3.jpg',
-  '/hero/hero-4.jpg',
 ]
 
 const SLIDE_INTERVAL_MS = 5000
@@ -73,7 +72,7 @@ export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number 
         aria-hidden
         className="absolute inset-x-0 bottom-0 h-1 bg-brand-600"
       />
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-4 py-20 sm:px-6 sm:py-28 lg:flex-row lg:items-center lg:gap-12 lg:px-8 lg:py-36">
+      <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-4 py-24 sm:px-6 sm:py-32 lg:flex-row lg:items-center lg:gap-12 lg:px-8 lg:py-44">
         <div className="flex-1">
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-600/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-400 ring-1 ring-inset ring-brand-600/30">
             <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand-500" />
