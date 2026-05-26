@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 
 export function SellYourCar() {
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-ink-900 p-8 text-white sm:p-12">
+    <div className="relative overflow-hidden rounded-3xl bg-ink-900 p-6 text-white sm:p-12">
       <div
         aria-hidden
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(220,45,18,0.25),transparent_55%)]"
@@ -15,8 +15,8 @@ export function SellYourCar() {
       />
       <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
         <div className="flex items-start gap-5">
-          <span className="hidden h-14 w-14 shrink-0 place-items-center rounded-2xl bg-brand-600 text-white shadow-md sm:grid">
-            <ArrowLeftRight className="h-6 w-6" aria-hidden />
+          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-brand-600 text-white shadow-md sm:h-14 sm:w-14">
+            <ArrowLeftRight className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden />
           </span>
           <div>
             <span className="text-xs font-semibold uppercase tracking-wider text-brand-400">

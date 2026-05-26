@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 
 export function FinalCTA() {
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-brand-600 p-8 text-white shadow-xl sm:p-12">
+    <div className="relative overflow-hidden rounded-3xl bg-brand-600 p-6 text-white shadow-xl sm:p-12">
       <div
         aria-hidden
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.18),transparent_55%)]"
