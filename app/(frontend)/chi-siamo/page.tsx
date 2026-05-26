@@ -12,6 +12,7 @@ import {
   Search,
   TrendingUp,
   Users,
+  ArrowLeftRight,
 } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -69,12 +70,12 @@ export default function ChiSiamoPage() {
           aria-hidden
           className="absolute inset-x-0 bottom-0 h-1 bg-brand-600"
         />
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
+        <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-600/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-400 ring-1 ring-inset ring-brand-600/30">
             <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand-500" />
             Chi siamo
           </span>
-          <h1 className="mt-5 max-w-3xl text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="mt-3 max-w-3xl text-balance text-4xl font-semibold tracking-tight sm:mt-5 sm:text-5xl lg:text-6xl">
             La passione per le auto,{' '}
             <span className="text-brand-500">prima di tutto</span>.
           </h1>
@@ -87,7 +88,7 @@ export default function ChiSiamoPage() {
       </section>
 
       {/* LA NOSTRA STORIA */}
-      <Section className="py-16 sm:py-20">
+      <Section className="py-10 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
           <div>
             <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
@@ -126,7 +127,7 @@ export default function ChiSiamoPage() {
       </Section>
 
       {/* COSA CI RENDE DIVERSI */}
-      <section className="bg-ink-50 py-16 sm:py-20">
+      <section className="bg-ink-50 py-10 sm:py-20">
         <Section>
           <SectionHeader
             eyebrow="Cosa ci rende diversi"
@@ -139,8 +140,8 @@ export default function ChiSiamoPage() {
                 key={d.title}
                 className="rounded-2xl border border-ink-200 bg-white p-6 shadow-sm"
               >
-                <div className="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700">
-                  <d.icon className="h-5 w-5" />
+                <div className="grid h-12 w-12 place-items-center rounded-xl bg-brand-600 text-white shadow-md">
+                  <d.icon className="h-6 w-6" />
                 </div>
                 <h3 className="mt-4 text-lg font-semibold text-ink-900">
                   {d.title}
@@ -155,7 +156,7 @@ export default function ChiSiamoPage() {
       </section>
 
       {/* IL NOSTRO PRINCIPIO */}
-      <Section className="py-16 sm:py-20">
+      <Section className="py-10 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
           <div>
             <span className="text-sm font-semibold uppercase tracking-wider text-brand-600">
@@ -262,7 +263,7 @@ export default function ChiSiamoPage() {
       </section>
 
       {/* DI COSA ANDIAMO FIERI */}
-      <Section className="py-16 sm:py-20">
+      <Section className="py-10 sm:py-20">
         <SectionHeader
           eyebrow="Di cosa andiamo fieri"
           title="Non un trofeo, ma un numero e una storia"
@@ -347,7 +348,7 @@ export default function ChiSiamoPage() {
       </Section>
 
       {/* CTA FINALE */}
-      <section className="bg-ink-50 py-16 sm:py-20">
+      <section className="bg-ink-50 py-10 sm:py-20">
         <Section>
           <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-ink-900 via-ink-900 to-ink-800 p-8 text-white sm:p-12">
             <div
@@ -365,14 +366,30 @@ export default function ChiSiamoPage() {
                   ogni cliente che entra in salone. Inizia da qui.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-3">
-                <Button asChild size="lg">
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button asChild size="lg" className="w-full sm:w-auto">
                   <Link href="/veicoli">
                     <Search className="h-4 w-4" />
                     Tutti i Veicoli
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline">
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto"
+                >
+                  <Link href="/vendi-la-tua-auto">
+                    <ArrowLeftRight className="h-4 w-4" />
+                    Vendi la tua auto
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto"
+                >
                   <Link href="/contatti">Contattaci</Link>
                 </Button>
               </div>
