@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Phone, Mail } from 'lucide-react'
 import type { SiteSetting } from '@/payload-types'
 
 const SUBITO_URL = 'https://impresapiu.subito.it/shops/54562-gr-auto'
@@ -60,19 +61,6 @@ const socialStyles: Record<SocialKey, { bg: string; label: string; Icon: typeof 
   tiktok: { bg: 'bg-black', label: 'TikTok', Icon: TiktokIcon },
 }
 
-function SubitoLogo() {
-  return (
-    <div className="inline-flex items-center gap-2">
-      <span className="grid h-10 w-10 place-items-center rounded-full bg-[#FF6F00] text-white shadow-sm">
-        <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-          <polyline points="5 12 10 17 19 7" />
-        </svg>
-      </span>
-      <span className="text-2xl font-bold tracking-tight text-[#FF6F00]">subito</span>
-    </div>
-  )
-}
-
 export function Footer({ settings }: { settings: SiteSetting }) {
   const year = new Date().getFullYear()
 
@@ -95,7 +83,7 @@ export function Footer({ settings }: { settings: SiteSetting }) {
   return (
     <footer className="mt-24 bg-ink-900 text-white/80">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-3 lg:gap-12 lg:px-8">
-        {/* Colonna 1 — Azienda + Orari */}
+        {/* Colonna 1 — Azienda */}
         <div>
           <h3 className="text-base font-bold uppercase tracking-wider text-white">
             {companyName}
@@ -104,8 +92,11 @@ export function Footer({ settings }: { settings: SiteSetting }) {
             {settings.footerText ||
               `${companyName} è il tuo concessionario di fiducia per la vendita di auto usate, km 0 e aziendali. Selezioniamo personalmente ogni veicolo per offrirti qualità, garanzia e finanziamento su misura. Permuta valutata in giornata.`}
           </p>
+        </div>
 
-          <h4 className="mt-8 text-sm font-bold uppercase tracking-wider text-white">
+        {/* Colonna 2 — Orari + Subito badge */}
+        <div>
+          <h4 className="text-sm font-bold uppercase tracking-wider text-white">
             Orari di apertura
           </h4>
           <div className="mt-4 space-y-1 text-sm text-white/70">
@@ -113,22 +104,34 @@ export function Footer({ settings }: { settings: SiteSetting }) {
             <p>Sabato: 09:00 – 19:30</p>
             <p>Domenica: Chiuso</p>
           </div>
-        </div>
 
-        {/* Colonna 2 — Card Subito */}
-        <div className="flex">
           <a
             href={SUBITO_URL}
             target="_blank"
             rel="noreferrer noopener"
-            className="flex w-full flex-col items-center justify-center rounded-lg bg-white p-8 text-center text-ink-900 shadow-md transition-transform hover:-translate-y-0.5 hover:shadow-lg"
+            className="mt-7 inline-flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-3 transition-colors hover:bg-white/10"
           >
-            <SubitoLogo />
-            <p className="mt-4 text-lg font-semibold text-ink-900">
-              Visita il nostro shop
-            </p>
-            <span className="mt-5 inline-flex h-11 items-center justify-center rounded-md bg-brand-600 px-6 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-brand-700">
-              Vai allo shop
+            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#FF6F00] text-white shadow-sm">
+              <svg
+                viewBox="0 0 24 24"
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden
+              >
+                <polyline points="5 12 10 17 19 7" />
+              </svg>
+            </span>
+            <span className="text-left">
+              <span className="block text-xs uppercase tracking-wider text-white/60">
+                Trovaci anche su
+              </span>
+              <span className="block text-base font-bold text-[#FF6F00]">
+                subito.it
+              </span>
             </span>
           </a>
         </div>
@@ -139,8 +142,47 @@ export function Footer({ settings }: { settings: SiteSetting }) {
             Contattaci
           </h3>
 
+          <ul className="mt-5 space-y-3">
+            {settings.phone ? (
+              <li>
+                <a
+                  href={`tel:${settings.phone.replace(/\s/g, '')}`}
+                  className="group flex items-center gap-3"
+                >
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-brand-600 text-white shadow-md transition-transform group-hover:-translate-y-0.5">
+                    <Phone className="h-4 w-4" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-xs text-white/60">Chiamaci</span>
+                    <span className="block truncate text-sm font-semibold text-white">
+                      {settings.phone}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ) : null}
+            {settings.email ? (
+              <li>
+                <a
+                  href={`mailto:${settings.email}`}
+                  className="group flex items-center gap-3"
+                >
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-white/10 text-white shadow-md transition-transform group-hover:-translate-y-0.5">
+                    <Mail className="h-4 w-4" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-xs text-white/60">Email</span>
+                    <span className="block truncate text-sm font-semibold text-white">
+                      {settings.email}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ) : null}
+          </ul>
+
           {socials.length > 0 ? (
-            <ul className="mt-5 flex flex-wrap gap-3">
+            <ul className="mt-6 flex flex-wrap gap-3">
               {socials.map(({ key, url }) => {
                 const cfg = socialStyles[key]
                 const Icon = cfg.Icon
@@ -161,7 +203,7 @@ export function Footer({ settings }: { settings: SiteSetting }) {
             </ul>
           ) : null}
 
-          <div className="mt-7 space-y-1 text-sm text-white/80">
+          <div className="mt-6 space-y-1 text-sm text-white/80">
             <p className="font-bold uppercase tracking-wider text-white">{companyName}</p>
             <p>{ADDRESS}</p>
             {settings.vat ? (
@@ -185,31 +227,10 @@ export function Footer({ settings }: { settings: SiteSetting }) {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-4 py-6 text-xs text-white/55 sm:flex-row sm:items-center sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-6 text-xs text-white/55 sm:px-6 lg:px-8">
           <p>
             © {year} {companyName}. {settings.rea ? `REA ${settings.rea} · ` : ''}Tutti i diritti riservati.
           </p>
-          {socials.length > 0 ? (
-            <ul className="flex items-center gap-3">
-              {socials.map(({ key, url }) => {
-                const cfg = socialStyles[key]
-                const Icon = cfg.Icon
-                return (
-                  <li key={`bottom-${key}`}>
-                    <a
-                      href={url}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      aria-label={cfg.label}
-                      className="grid h-7 w-7 place-items-center rounded-full text-white/60 transition-colors hover:text-white"
-                    >
-                      <Icon className="h-4 w-4" />
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
-          ) : null}
         </div>
       </div>
     </footer>
