@@ -352,9 +352,12 @@ export default function ServiziPage() {
             </p>
           </div>
 
-          <ul className="mt-10 grid grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+          <ul className="mt-10 flex flex-wrap justify-center gap-3 sm:mt-12 sm:grid sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
             {categories.map((cat) => (
-              <li key={cat.slug}>
+              <li
+                key={cat.slug}
+                className="basis-[calc(50%-0.375rem)] sm:basis-auto"
+              >
                 <Link
                   href={`#${cat.slug}`}
                   className="group flex h-full flex-col rounded-xl border border-ink-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-brand-600 hover:shadow-md"
@@ -377,7 +380,7 @@ export default function ServiziPage() {
       </section>
 
       {/* SERVIZIO IN EVIDENZA: PERSONAL CAR SHOPPER */}
-      <Section className="py-16 sm:py-20">
+      <Section className="py-10 sm:py-20">
         <div className="relative overflow-hidden rounded-2xl border border-brand-600/30 bg-gradient-to-br from-ink-50 to-white p-6 sm:p-10">
           <div
             aria-hidden
@@ -405,8 +408,8 @@ export default function ServiziPage() {
                 Diventiamo i tuoi consulenti personali, dalla selezione alla
                 consegna in Italia.
               </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Button asChild>
+              <div className="mt-6">
+                <Button asChild className="w-full sm:w-auto">
                   <Link href="/contatti">Richiedi una ricerca</Link>
                 </Button>
               </div>
@@ -450,7 +453,7 @@ export default function ServiziPage() {
       </Section>
 
       {/* TUTTI I SERVIZI */}
-      <section id="servizi" className="bg-ink-50 py-16 sm:py-20">
+      <section id="servizi" className="bg-ink-50 py-10 sm:py-20">
         <Section>
           <SectionHeader
             eyebrow="Catalogo completo"
@@ -518,7 +521,7 @@ export default function ServiziPage() {
       </section>
 
       {/* IL VIAGGIO CON NOI */}
-      <Section className="py-16 sm:py-20">
+      <Section className="py-10 sm:py-20">
         <SectionHeader
           eyebrow="Il viaggio con noi"
           title="Dalla prima richiesta alla consegna"
@@ -553,7 +556,7 @@ export default function ServiziPage() {
       </Section>
 
       {/* FAQ */}
-      <section className="bg-ink-50 py-16 sm:py-20">
+      <section className="bg-ink-50 py-10 sm:py-20">
         <Section>
           <SectionHeader
             eyebrow="Domande frequenti"
@@ -622,14 +625,19 @@ export default function ServiziPage() {
                   pensiamo noi.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-3">
-                <Button asChild size="lg">
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button asChild size="lg" className="w-full sm:w-auto">
                   <Link href="/contatti">
                     <Phone className="h-4 w-4" />
                     Contattaci
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline">
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto"
+                >
                   <Link href="/veicoli">
                     <Search className="h-4 w-4" />
                     Tutti i Veicoli
