@@ -44,7 +44,7 @@ export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number 
   }
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-ink-900 via-ink-900 to-ink-800 text-white">
+    <section className="relative bg-gradient-to-br from-ink-900 via-ink-900 to-ink-800 text-white sm:overflow-hidden">
       <div aria-hidden className="absolute inset-0">
         {heroSlides.map((src, i) => (
           <Image
@@ -72,16 +72,16 @@ export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number 
         aria-hidden
         className="absolute inset-x-0 bottom-0 h-1 bg-brand-600"
       />
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-4 py-24 sm:px-6 sm:py-32 lg:flex-row lg:items-center lg:gap-12 lg:px-8 lg:py-44">
+      <div className="relative mx-auto flex max-w-7xl flex-col gap-6 px-4 py-12 sm:gap-10 sm:px-6 sm:py-32 lg:flex-row lg:items-center lg:gap-12 lg:px-8 lg:py-44">
         <div className="flex-1">
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-600/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-400 ring-1 ring-inset ring-brand-600/30">
             <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand-500" />
             {totalCount} veicoli pronti consegna
           </span>
-          <h1 className="mt-5 text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight sm:mt-5 sm:text-5xl lg:text-6xl">
             Scegli la tua auto <span className="text-brand-500">ideale</span>.
           </h1>
-          <p className="mt-4 max-w-xl text-pretty text-base text-white/80 sm:text-lg">
+          <p className="mt-3 max-w-xl text-pretty text-sm text-white/80 sm:mt-4 sm:text-base lg:text-lg">
             Auto usate, km 0 e aziendali controllate punto per punto. Garanzia,
             finanziamento su misura e permuta valutata in giornata.
           </p>
@@ -89,10 +89,12 @@ export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number 
 
         <form
           onSubmit={onSubmit}
-          className="flex-1 rounded-2xl border-t-4 border-brand-600 bg-white p-5 text-ink-900 shadow-2xl ring-1 ring-black/5 sm:p-6"
+          className="relative z-20 -mb-44 flex-1 rounded-2xl border-t-4 border-brand-600 bg-white p-4 text-ink-900 shadow-2xl ring-1 ring-black/5 sm:-mb-0 sm:p-6"
         >
-          <div className="text-sm font-semibold uppercase tracking-wider text-ink-900">Trova la tua auto</div>
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          <div className="text-xs font-semibold uppercase tracking-wider text-ink-900 sm:text-sm">
+            Trova la tua auto
+          </div>
+          <div className="mt-3 grid grid-cols-3 gap-2 sm:mt-4 sm:gap-3">
             <label className="block text-xs">
               <span className="mb-1 block text-ink-700">Marca</span>
               <Select value={marca} onChange={(e) => setMarca(e.target.value)}>
@@ -105,7 +107,10 @@ export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number 
               </Select>
             </label>
             <label className="block text-xs">
-              <span className="mb-1 block text-ink-700">Prezzo massimo</span>
+              <span className="mb-1 block text-ink-700">
+                <span className="sm:hidden">Prezzo</span>
+                <span className="hidden sm:inline">Prezzo massimo</span>
+              </span>
               <Select
                 value={prezzoMax}
                 onChange={(e) => setPrezzoMax(e.target.value)}
@@ -119,7 +124,10 @@ export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number 
               </Select>
             </label>
             <label className="block text-xs">
-              <span className="mb-1 block text-ink-700">Alimentazione</span>
+              <span className="mb-1 block text-ink-700">
+                <span className="sm:hidden">Alim.</span>
+                <span className="hidden sm:inline">Alimentazione</span>
+              </span>
               <Select value={fuel} onChange={(e) => setFuel(e.target.value)}>
                 <option value="">Tutte</option>
                 {Object.entries(fuelLabels).map(([k, v]) => (
@@ -130,7 +138,7 @@ export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number 
               </Select>
             </label>
           </div>
-          <Button type="submit" size="lg" className="mt-5 w-full">
+          <Button type="submit" size="lg" className="mt-4 w-full sm:mt-5">
             <Search className="h-4 w-4" />
             Cerca veicoli
           </Button>
