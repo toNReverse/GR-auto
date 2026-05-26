@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Phone, Mail } from 'lucide-react'
 import type { SiteSetting } from '@/payload-types'
@@ -111,25 +112,18 @@ export function Footer({ settings }: { settings: SiteSetting }) {
             rel="noreferrer noopener"
             className="mt-7 inline-flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-3 transition-colors hover:bg-white/10"
           >
-            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#FF6F00] text-white shadow-sm">
-              <svg
-                viewBox="0 0 24 24"
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden
-              >
-                <polyline points="5 12 10 17 19 7" />
-              </svg>
-            </span>
+            <Image
+              src="/subito-logo.png"
+              alt=""
+              width={36}
+              height={36}
+              className="h-9 w-9 shrink-0 rounded-full bg-white object-contain shadow-sm"
+            />
             <span className="text-left">
               <span className="block text-xs uppercase tracking-wider text-white/60">
                 Trovaci anche su
               </span>
-              <span className="block text-base font-bold text-[#FF6F00]">
+              <span className="block text-base font-bold text-white">
                 subito.it
               </span>
             </span>

@@ -33,12 +33,12 @@ export function LocationMap({ location }: { location: Location }) {
   const [lng, lat] = location.coordinates as unknown as [number, number]
 
   return (
-    <div className="overflow-hidden rounded-xl border border-ink-200">
+    <div className="h-full overflow-hidden">
       <MapContainer
         center={[lat, lng]}
         zoom={14}
         scrollWheelZoom={false}
-        style={{ height: 320, width: '100%' }}
+        style={{ height: '100%', minHeight: 320, width: '100%' }}
       >
         <TileLayer
           attribution='&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
