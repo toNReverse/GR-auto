@@ -102,7 +102,7 @@ export function Footer({ settings }: { settings: SiteSetting }) {
           </h3>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-white/70">
             {settings.footerText ||
-              `L'azienda ${companyName} opera nel settore automobilistico offrendo auto selezionate e garantite. La nostra missione è rendere il processo di vendita auto online semplice, sicuro e trasparente.`}
+              `${companyName} è il tuo concessionario di fiducia per la vendita di auto usate, km 0 e aziendali. Selezioniamo personalmente ogni veicolo per offrirti qualità, garanzia e finanziamento su misura. Permuta valutata in giornata.`}
           </p>
 
           <h4 className="mt-8 text-sm font-bold uppercase tracking-wider text-white">

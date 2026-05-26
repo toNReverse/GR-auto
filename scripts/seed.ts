@@ -573,7 +573,7 @@ async function main() {
       vat: '00000000000',
       rea: 'CT-0000000',
       footerText:
-        "GR AUTO di Gabriele Russo opera nel settore automobilistico a Catania, offrendo auto e moto selezionate, controllate e garantite. La nostra missione è rendere il processo di acquisto semplice, sicuro e trasparente.",
+        'GR AUTO è il tuo concessionario di fiducia per la vendita di auto usate, km 0 e aziendali. Selezioniamo personalmente ogni veicolo per offrirti qualità, garanzia e finanziamento su misura. Permuta valutata in giornata.',
       colorPrimary: '#dc2d12',
       colorAccent: '#232628',
     } as never,

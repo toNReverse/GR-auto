@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Search } from 'lucide-react'
+import { Search, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Select } from '@/components/ui/select'
 import type { Make } from '@/payload-types'
@@ -85,6 +85,20 @@ export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number 
             Auto usate, km 0 e aziendali controllate punto per punto. Garanzia,
             finanziamento su misura e permuta valutata in giornata.
           </p>
+          <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-white/90 sm:mt-6 sm:gap-x-6 sm:text-sm">
+            <li className="inline-flex items-center gap-1.5">
+              <Check className="h-4 w-4 text-brand-500" aria-hidden />
+              Garanzia inclusa
+            </li>
+            <li className="inline-flex items-center gap-1.5">
+              <Check className="h-4 w-4 text-brand-500" aria-hidden />
+              Finanziamento su misura
+            </li>
+            <li className="inline-flex items-center gap-1.5">
+              <Check className="h-4 w-4 text-brand-500" aria-hidden />
+              Permuta valutata
+            </li>
+          </ul>
         </div>
 
         <form
