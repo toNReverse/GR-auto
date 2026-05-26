@@ -344,7 +344,9 @@ export default async function VehiclePage({ params }: Props) {
                           ) : null}
                         </div>
                         {location.coordinates ? (
-                          <LocationMapLazy location={location} />
+                          <div className="overflow-hidden rounded-xl border border-ink-200">
+                            <LocationMapLazy location={location} />
+                          </div>
                         ) : null}
                       </div>
                     ) : (
