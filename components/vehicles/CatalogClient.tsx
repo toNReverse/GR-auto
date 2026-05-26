@@ -8,7 +8,6 @@ import { VehicleCard } from './VehicleCard'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select } from '@/components/ui/select'
-import { cn } from '@/lib/utils/cn'
 import { vehicleYear } from '@/lib/utils/vehicle'
 import {
   bodyTypeLabels,
@@ -163,6 +162,16 @@ export function CatalogClient({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, sort, page])
 
+  // Lock body scroll when drawer is open
+  useEffect(() => {
+    if (!drawerOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [drawerOpen])
+
   const fuse = useMemo(
     () =>
       new Fuse(vehicles, {
@@ -256,8 +265,119 @@ export function CatalogClient({
     setPage(1)
   }
 
-  const Sidebar = (
-    <aside className="space-y-6">
+  const activeFiltersCount = useMemo(() => {
+    let n = 0
+    if (filters.q) n++
+    if (filters.marca) n++
+    if (filters.modello) n++
+    if (filters.prezzoMin) n++
+    if (filters.prezzoMax) n++
+    if (filters.annoMin) n++
+    if (filters.annoMax) n++
+    if (filters.kmMax) n++
+    n += filters.fuel.length
+    n += filters.transmission.length
+    n += filters.bodyType.length
+    n += filters.condition.length
+    return n
+  }, [filters])
+
+  const activeChips = useMemo(() => {
+    const chips: { key: string; label: string; clear: () => void }[] = []
+    const patch = (p: Partial<Filters>) => {
+      setFilters((f) => ({ ...f, ...p }))
+      setPage(1)
+    }
+    if (filters.q)
+      chips.push({
+        key: 'q',
+        label: `"${filters.q}"`,
+        clear: () => patch({ q: '' }),
+      })
+    if (filters.marca) {
+      const m = makes.find((x) => x.slug === filters.marca)
+      chips.push({
+        key: 'marca',
+        label: m?.name ?? filters.marca,
+        clear: () => patch({ marca: '', modello: '' }),
+      })
+    }
+    if (filters.modello)
+      chips.push({
+        key: 'modello',
+        label: filters.modello,
+        clear: () => patch({ modello: '' }),
+      })
+    if (filters.prezzoMin)
+      chips.push({
+        key: 'prezzoMin',
+        label: `da € ${(+filters.prezzoMin).toLocaleString('it-IT')}`,
+        clear: () => patch({ prezzoMin: '' }),
+      })
+    if (filters.prezzoMax)
+      chips.push({
+        key: 'prezzoMax',
+        label: `fino a € ${(+filters.prezzoMax).toLocaleString('it-IT')}`,
+        clear: () => patch({ prezzoMax: '' }),
+      })
+    if (filters.annoMin)
+      chips.push({
+        key: 'annoMin',
+        label: `dal ${filters.annoMin}`,
+        clear: () => patch({ annoMin: '' }),
+      })
+    if (filters.annoMax)
+      chips.push({
+        key: 'annoMax',
+        label: `al ${filters.annoMax}`,
+        clear: () => patch({ annoMax: '' }),
+      })
+    if (filters.kmMax)
+      chips.push({
+        key: 'kmMax',
+        label: `max ${(+filters.kmMax).toLocaleString('it-IT')} km`,
+        clear: () => patch({ kmMax: '' }),
+      })
+    filters.fuel.forEach((f) =>
+      chips.push({
+        key: `fuel-${f}`,
+        label: fuelLabels[f as keyof typeof fuelLabels] ?? f,
+        clear: () =>
+          patch({ fuel: filters.fuel.filter((x) => x !== f) }),
+      }),
+    )
+    filters.transmission.forEach((t) =>
+      chips.push({
+        key: `tx-${t}`,
+        label:
+          transmissionLabels[t as keyof typeof transmissionLabels] ?? t,
+        clear: () =>
+          patch({
+            transmission: filters.transmission.filter((x) => x !== t),
+          }),
+      }),
+    )
+    filters.bodyType.forEach((b) =>
+      chips.push({
+        key: `bt-${b}`,
+        label: bodyTypeLabels[b as keyof typeof bodyTypeLabels] ?? b,
+        clear: () =>
+          patch({ bodyType: filters.bodyType.filter((x) => x !== b) }),
+      }),
+    )
+    filters.condition.forEach((c) =>
+      chips.push({
+        key: `cond-${c}`,
+        label: conditionLabels[c as keyof typeof conditionLabels] ?? c,
+        clear: () =>
+          patch({ condition: filters.condition.filter((x) => x !== c) }),
+      }),
+    )
+    return chips
+  }, [filters, makes])
+
+  const filtersFields = (
+    <div className="space-y-6">
       <div>
         <Input
           placeholder="Cerca per modello, allestimento…"
@@ -401,7 +521,12 @@ export function CatalogClient({
           setPage(1)
         }}
       />
+    </div>
+  )
 
+  const Sidebar = (
+    <aside className="space-y-6">
+      {filtersFields}
       <Button variant="ghost" size="sm" onClick={reset}>
         Azzera filtri
       </Button>
@@ -415,7 +540,7 @@ export function CatalogClient({
       </div>
 
       <div>
-        <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="sticky top-16 z-20 -mx-4 flex flex-wrap items-center justify-between gap-3 border-b border-ink-200 bg-white/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:static lg:z-auto lg:mx-0 lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
           <div className="text-sm text-ink-700">
             <strong className="text-ink-900">{filtered.length}</strong> veicoli
           </div>
@@ -428,6 +553,11 @@ export function CatalogClient({
             >
               <Filter className="h-4 w-4" />
               Filtri
+              {activeFiltersCount > 0 ? (
+                <span className="ml-1 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brand-600 px-1.5 text-xs font-semibold text-white">
+                  {activeFiltersCount}
+                </span>
+              ) : null}
             </Button>
             <Select
               value={sort}
@@ -443,6 +573,33 @@ export function CatalogClient({
             </Select>
           </div>
         </div>
+
+        {activeChips.length > 0 ? (
+          <ul className="mt-4 flex flex-wrap items-center gap-2">
+            {activeChips.map((c) => (
+              <li key={c.key}>
+                <button
+                  type="button"
+                  onClick={c.clear}
+                  className="inline-flex items-center gap-1 rounded-full border border-ink-200 bg-white px-3 py-1 text-xs font-medium text-ink-800 transition-colors hover:border-brand-300 hover:bg-brand-50"
+                >
+                  <span>{c.label}</span>
+                  <X className="h-3 w-3" aria-hidden />
+                  <span className="sr-only">Rimuovi filtro</span>
+                </button>
+              </li>
+            ))}
+            <li>
+              <button
+                type="button"
+                onClick={reset}
+                className="rounded-full px-3 py-1 text-xs font-medium text-ink-600 hover:bg-ink-100"
+              >
+                Azzera tutti
+              </button>
+            </li>
+          </ul>
+        ) : null}
 
         {paged.length === 0 ? (
           <div className="mt-10 rounded-xl border border-dashed border-ink-200 p-10 text-center">
@@ -497,24 +654,44 @@ export function CatalogClient({
             className="absolute inset-0 bg-black/40"
             onClick={() => setDrawerOpen(false)}
           />
-          <div className={cn('absolute inset-y-0 right-0 w-[88%] max-w-sm overflow-y-auto bg-white p-5 shadow-xl')}>
-            <div className="mb-4 flex items-center justify-between">
-              <strong>Filtri</strong>
+          <aside className="absolute inset-y-0 right-0 flex w-[88%] max-w-sm flex-col bg-white shadow-xl">
+            <div className="flex shrink-0 items-center justify-between border-b border-ink-200 px-5 py-4">
+              <div className="flex items-center gap-2">
+                <strong className="text-ink-900">Filtri</strong>
+                {activeFiltersCount > 0 ? (
+                  <span className="inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brand-600 px-1.5 text-xs font-semibold text-white">
+                    {activeFiltersCount}
+                  </span>
+                ) : null}
+              </div>
               <button
+                type="button"
                 aria-label="Chiudi filtri"
                 onClick={() => setDrawerOpen(false)}
-                className="rounded-md p-2 hover:bg-ink-100"
+                className="rounded-md p-2 text-ink-700 hover:bg-ink-100"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
-            {Sidebar}
-            <div className="mt-6">
-              <Button className="w-full" onClick={() => setDrawerOpen(false)}>
+            <div className="flex-1 overflow-y-auto px-5 py-5">
+              {filtersFields}
+            </div>
+            <div className="flex shrink-0 gap-3 border-t border-ink-200 bg-white px-5 py-4">
+              <Button
+                variant="ghost"
+                className="flex-1"
+                onClick={reset}
+              >
+                Azzera
+              </Button>
+              <Button
+                className="flex-1"
+                onClick={() => setDrawerOpen(false)}
+              >
                 Mostra {filtered.length} veicoli
               </Button>
             </div>
-          </div>
+          </aside>
         </div>
       ) : null}
     </div>
