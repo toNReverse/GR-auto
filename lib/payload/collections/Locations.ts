@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateTag } from 'next/cache'
 import { isAdminOrEditor } from '../access/index.js'
 
 export const Locations: CollectionConfig = {
@@ -15,6 +16,18 @@ export const Locations: CollectionConfig = {
     create: isAdminOrEditor,
     update: isAdminOrEditor,
     delete: isAdminOrEditor,
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        revalidateTag('locations')
+      },
+    ],
+    afterDelete: [
+      () => {
+        revalidateTag('locations')
+      },
+    ],
   },
   fields: [
     {
