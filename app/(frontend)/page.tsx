@@ -29,24 +29,32 @@ export default async function HomePage() {
       <Hero makes={makes} totalCount={all.length} />
 
       {featured.length > 0 ? (
-        <Section className="pb-16 pt-48 sm:py-16">
+        <Section className="pb-10 pt-48 sm:py-16">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeader
               eyebrow="In vetrina"
               title="Veicoli in evidenza"
               description="Le proposte del momento, scelte per qualità, prezzo o disponibilità immediata."
             />
-            <Button asChild variant="ghost" size="sm">
+            <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
               <Link href="/veicoli">Vedi tutti i veicoli →</Link>
             </Button>
           </div>
-          <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden">
             {featured.map((v) => (
-              <li key={v.id} className="h-full">
+              <li
+                key={v.id}
+                className="h-full w-72 shrink-0 snap-start sm:w-auto sm:shrink"
+              >
                 <VehicleCard vehicle={v} />
               </li>
             ))}
           </ul>
+          <div className="mt-6 sm:hidden">
+            <Button asChild variant="outline" size="lg" className="w-full">
+              <Link href="/veicoli">Vedi tutti i veicoli →</Link>
+            </Button>
+          </div>
         </Section>
       ) : null}
 
@@ -54,7 +62,7 @@ export default async function HomePage() {
         <SellYourCar />
       </Section>
 
-      <Section className="py-12">
+      <Section className="py-8 sm:py-12">
         <GoogleReviews />
       </Section>
 

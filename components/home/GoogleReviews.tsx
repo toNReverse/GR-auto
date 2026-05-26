@@ -123,7 +123,7 @@ function VerifiedBadge({ className }: { className?: string }) {
 
 export function GoogleReviews() {
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-ink-900 px-4 py-12 sm:px-8 sm:py-16 lg:px-12">
+    <div className="relative overflow-hidden rounded-3xl bg-ink-900 px-4 py-10 sm:px-8 sm:py-16 lg:px-12">
       <div
         aria-hidden
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(220,45,18,0.18),transparent_55%)]"
@@ -142,11 +142,11 @@ export function GoogleReviews() {
           </p>
         </div>
 
-        <ul className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <ul className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 pl-6 pr-4 scroll-pl-6 [scrollbar-width:none] sm:mx-0 sm:grid sm:snap-none sm:grid-cols-1 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 md:grid-cols-2 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
           {reviews.map((r) => (
             <li
               key={r.name}
-              className="relative flex h-full flex-col rounded-2xl bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+              className="relative flex h-full w-[19rem] shrink-0 snap-start flex-col rounded-2xl bg-white p-5 shadow-sm transition-shadow hover:shadow-md sm:w-auto sm:shrink"
             >
               <div className="flex items-start gap-3">
                 <span

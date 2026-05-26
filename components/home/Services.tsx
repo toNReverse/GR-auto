@@ -25,7 +25,7 @@ const items = [
 
 export function Services() {
   return (
-    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <ul className="grid grid-cols-2 gap-4 lg:grid-cols-4">
       {items.map((it) => {
         const Icon = it.icon
         return (
