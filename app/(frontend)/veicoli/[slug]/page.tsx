@@ -17,6 +17,7 @@ import { Gallery } from '@/components/vehicles/Gallery'
 import { FinanceCalculator } from '@/components/vehicles/FinanceCalculator'
 import { Tabs } from '@/components/vehicles/Tabs'
 import { VehicleSidebar } from '@/components/vehicles/VehicleSidebar'
+import { ShareButton } from '@/components/vehicles/ShareButton'
 import { LocationMapLazy } from '@/components/vehicles/LocationMapLazy'
 import { RichTextRender } from '@/components/payload/RichTextRender'
 import { formatKm, formatMonthYear, formatPrice } from '@/lib/utils/format'
@@ -202,6 +203,12 @@ export default async function VehiclePage({ params }: Props) {
               <span className="text-xs uppercase tracking-wider text-ink-500">
                 {make?.name}
               </span>
+              <div className="ml-auto">
+                <ShareButton
+                  title={vehicle.title}
+                  text={`${vehicle.title} a ${formatPrice(vehicle.price)} — ${site.name}`}
+                />
+              </div>
             </div>
             <h1 className="text-balance text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
               {vehicle.title}
@@ -226,9 +233,17 @@ export default async function VehiclePage({ params }: Props) {
                 ))}
               </ul>
             ) : null}
+          </div>
 
-            <div className="mt-8">
-              <Tabs
+          <div className="lg:row-span-2 lg:self-start lg:sticky lg:top-20">
+            <VehicleSidebar vehicle={vehicle} whatsapp={site.whatsapp} />
+            <div className="mt-4">
+              <FinanceCalculator price={vehicle.price} settings={finance} />
+            </div>
+          </div>
+
+          <div>
+            <Tabs
                 items={[
                   {
                     id: 'spec',
@@ -336,16 +351,8 @@ export default async function VehiclePage({ params }: Props) {
                       <p className="text-ink-700">Sede non specificata.</p>
                     ),
                   },
-                ]}
-              />
-            </div>
-          </div>
-
-          <div className="lg:sticky lg:top-20 lg:self-start">
-            <VehicleSidebar vehicle={vehicle} whatsapp={site.whatsapp} />
-            <div className="mt-4">
-              <FinanceCalculator price={vehicle.price} settings={finance} />
-            </div>
+              ]}
+            />
           </div>
         </div>
       </Section>
