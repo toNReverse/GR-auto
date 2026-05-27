@@ -69,7 +69,7 @@ const categories: ServiceCategory[] = [
     title: 'Vendita e Consulenza',
     shortTitle: 'Vendita',
     intro:
-      "Ti aiutiamo a scegliere l'auto giusta — non quella che ci conviene vendere.",
+      "Ti aiutiamo a scegliere l'auto giusta, non quella che ci conviene vendere.",
     services: [
       {
         title: 'Selezione e importazione su commessione',
@@ -200,7 +200,7 @@ const categories: ServiceCategory[] = [
     title: 'Post-vendita e preparazione',
     shortTitle: 'Post-vendita',
     intro:
-      "Quando ritiri l'auto, è già pronta per i prossimi anni — non per la prima officina.",
+      "Quando ritiri l'auto, è già pronta per i prossimi anni, non per la prima officina.",
     services: [
       {
         title: 'Garanzia estensibile fino a 24/36 mesi',
@@ -266,7 +266,7 @@ const journey = [
     phase: 'Fase 6',
     title: 'Il post-vendita',
     icon: ShieldCheck,
-    body: "Dopo circa due settimane, una breve telefonata di cortesia per assicurarci che tutto stia andando come deve. Restiamo il tuo punto di riferimento per qualsiasi manutenzione futura — e per quando, tra qualche anno, deciderai di cambiare ancora.",
+    body: "Dopo circa due settimane, una breve telefonata di cortesia per assicurarci che tutto stia andando come deve. Restiamo il tuo punto di riferimento per qualsiasi manutenzione futura, e per quando, tra qualche anno, deciderai di cambiare ancora.",
   },
 ]
 
@@ -285,7 +285,7 @@ const faqs = [
     context:
       "Molte concessionarie pubblicizzano prezzi bassi legandoli a finanziamenti con tassi alti, o aggiungono 'spese di preparazione' fantasiose.",
     answer:
-      "Il nostro prezzo è trasparente. Se c'è margine di trattativa lo valutiamo insieme, ma il prezzo esposto è reale — sia che paghi in bonifico, sia che scelga un finanziamento. L'unico costo aggiuntivo è il passaggio di proprietà, calcolato su tabelle ACI ufficiali.",
+      "Il nostro prezzo è trasparente. Se c'è margine di trattativa lo valutiamo insieme, ma il prezzo esposto è reale: sia che paghi in bonifico, sia che scelga un finanziamento. L'unico costo aggiuntivo è il passaggio di proprietà, calcolato su tabelle ACI ufficiali.",
   },
   {
     area: 'Finanziamento',
@@ -317,7 +317,7 @@ const faqs = [
     context:
       "È il complimento più bello: significa che ti fidi già del nostro futuro.",
     answer:
-      "Certo che sì. Conosciamo la storia dell'auto perché l'abbiamo curata noi — siamo i primi a volerla riscattare e valorizzarla di nuovo sul mercato.",
+      "Certo che sì. Conosciamo la storia dell'auto perché l'abbiamo curata noi: siamo i primi a volerla riscattare e valorizzarla di nuovo sul mercato.",
   },
 ]
 

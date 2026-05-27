@@ -29,7 +29,7 @@ export default async function HomePage() {
       <Hero makes={makes} totalCount={all.length} />
 
       {featured.length > 0 ? (
-        <Section className="pb-10 pt-48 sm:py-16">
+        <Section className="pb-8 pt-44 sm:py-16">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeader
               eyebrow="In vetrina"

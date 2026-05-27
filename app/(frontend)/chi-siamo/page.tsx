@@ -35,7 +35,7 @@ const differenziali = [
   {
     icon: Sparkles,
     title: "L'occhio dell'appassionato",
-    body: "Non parliamo solo di rate, consumi o tabelle di manutenzione. Parliamo di emozioni, dettagli, storia dell'auto. È quello che cerchiamo nelle vetture che selezioniamo — e nelle persone con cui lavoriamo.",
+    body: "Non parliamo solo di rate, consumi o tabelle di manutenzione. Parliamo di emozioni, dettagli, storia dell'auto. È quello che cerchiamo nelle vetture che selezioniamo, e nelle persone con cui lavoriamo.",
   },
 ]
 
@@ -195,7 +195,7 @@ export default function ChiSiamoPage() {
                 Se un&apos;auto ha un difetto, lo dico. Anche se è un
                 dettaglio che potrei tranquillamente tacere, anche se rischio
                 che il cliente vada via. Perché la fiducia, una volta tradita,
-                non si riconquista più — e perché voglio poter dormire sereno
+                non si riconquista più, e perché voglio poter dormire sereno
                 la sera.
               </figcaption>
             </figure>
