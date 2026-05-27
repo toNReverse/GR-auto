@@ -200,12 +200,6 @@ export function Footer({ settings }: { settings: SiteSetting }) {
           <div className="mt-6 space-y-1 text-sm text-white/80">
             <p className="font-bold uppercase tracking-wider text-white">{companyName}</p>
             <p>{ADDRESS}</p>
-            {settings.vat ? (
-              <p>
-                <span className="font-semibold uppercase tracking-wider">Partita IVA:</span>{' '}
-                {settings.vat}
-              </p>
-            ) : null}
           </div>
 
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm">
