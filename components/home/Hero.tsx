@@ -62,7 +62,7 @@ export function Hero({ makes, totalCount }: { makes: Make[]; totalCount: number 
       </div>
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-r from-ink-900/85 via-ink-900/70 to-ink-900/40"
+        className="absolute inset-0 bg-gradient-to-r from-ink-900/50 via-ink-900/30 to-ink-900/10"
       />
       <div
         aria-hidden
