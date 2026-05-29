@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { revalidateTag } from 'next/cache'
 import { isAdmin } from '../access/index.js'
 
 export const SiteSettings: GlobalConfig = {
@@ -12,6 +13,13 @@ export const SiteSettings: GlobalConfig = {
   access: {
     read: () => true,
     update: isAdmin,
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        revalidateTag('site')
+      },
+    ],
   },
   fields: [
     {
