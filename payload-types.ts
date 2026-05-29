@@ -320,6 +320,10 @@ export interface Vehicle {
   internalCode?: string | null;
   availability: 'available' | 'reserved' | 'sold' | 'incoming';
   /**
+   * Distingue le auto private dai veicoli commerciali.
+   */
+  vehicleClass: 'civile' | 'commerciale';
+  /**
    * Mostra il veicolo nella sezione "In evidenza" della homepage.
    */
   featured?: boolean | null;
@@ -852,6 +856,7 @@ export interface VehiclesSelect<T extends boolean = true> {
   slug?: T;
   internalCode?: T;
   availability?: T;
+  vehicleClass?: T;
   featured?: T;
   make?: T;
   model?: T;

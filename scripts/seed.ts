@@ -733,6 +733,7 @@ async function main() {
         slug,
         status: v.status_field,
         featured: v.featured,
+        vehicleClass: 'civile',
         make: makesByName[v.make],
         model: v.model,
         trim: v.trim,

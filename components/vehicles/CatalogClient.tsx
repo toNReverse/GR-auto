@@ -28,6 +28,7 @@ type SortKey =
 
 type Filters = {
   q: string
+  tipo: string[]
   marca: string
   modello: string
   prezzoMin: string
@@ -43,6 +44,7 @@ type Filters = {
 
 const empty: Filters = {
   q: '',
+  tipo: [],
   marca: '',
   modello: '',
   prezzoMin: '',
@@ -60,6 +62,7 @@ function readFromUrl(sp: URLSearchParams): Filters {
   const list = (k: string) => (sp.get(k)?.split(',').filter(Boolean) ?? [])
   return {
     q: sp.get('q') ?? '',
+    tipo: list('tipo'),
     marca: sp.get('marca') ?? '',
     modello: sp.get('modello') ?? '',
     prezzoMin: sp.get('prezzo_min') ?? '',
@@ -77,6 +80,7 @@ function readFromUrl(sp: URLSearchParams): Filters {
 function writeToUrl(filters: Filters, sort: SortKey, page: number) {
   const sp = new URLSearchParams()
   if (filters.q) sp.set('q', filters.q)
+  if (filters.tipo.length) sp.set('tipo', filters.tipo.join(','))
   if (filters.marca) sp.set('marca', filters.marca)
   if (filters.modello) sp.set('modello', filters.modello)
   if (filters.prezzoMin) sp.set('prezzo_min', filters.prezzoMin)
@@ -201,6 +205,15 @@ export function CatalogClient({
 
     list = list.filter((v) => {
       const make = (typeof v.make === 'object' ? v.make : null) as Make | null
+      if (filters.tipo.length) {
+        const vClass = (v as Vehicle & { vehicleClass?: string | null })
+          .vehicleClass
+        const matches = filters.tipo.some((t) => {
+          if (t === 'civile') return !vClass || vClass === 'civile'
+          return vClass === t
+        })
+        if (!matches) return false
+      }
       if (filters.marca && make?.slug !== filters.marca) return false
       if (filters.modello && v.model !== filters.modello) return false
       if (filters.prezzoMin && v.price < +filters.prezzoMin) return false
@@ -268,6 +281,7 @@ export function CatalogClient({
   const activeFiltersCount = useMemo(() => {
     let n = 0
     if (filters.q) n++
+    n += filters.tipo.length
     if (filters.marca) n++
     if (filters.modello) n++
     if (filters.prezzoMin) n++
@@ -294,6 +308,14 @@ export function CatalogClient({
         label: `"${filters.q}"`,
         clear: () => patch({ q: '' }),
       })
+    filters.tipo.forEach((t) =>
+      chips.push({
+        key: `tipo-${t}`,
+        label: t === 'commerciale' ? 'Furgoni' : 'Auto',
+        clear: () =>
+          patch({ tipo: filters.tipo.filter((x) => x !== t) }),
+      }),
+    )
     if (filters.marca) {
       const m = makes.find((x) => x.slug === filters.marca)
       chips.push({
@@ -388,6 +410,19 @@ export function CatalogClient({
           }}
         />
       </div>
+
+      <CheckboxGroup
+        label="Tipo veicolo"
+        options={[
+          { value: 'civile', label: 'Auto' },
+          { value: 'commerciale', label: 'Furgoni' },
+        ]}
+        value={filters.tipo}
+        onChange={(next) => {
+          setFilters({ ...filters, tipo: next })
+          setPage(1)
+        }}
+      />
 
       <div>
         <div className="text-sm font-semibold text-ink-900">Marca</div>

@@ -119,6 +119,22 @@ export const Vehicles: CollectionConfig = {
               },
             },
             {
+              name: 'vehicleClass',
+              label: 'Tipo veicolo',
+              type: 'select',
+              required: true,
+              defaultValue: 'civile',
+              options: [
+                { label: 'Auto (civile)', value: 'civile' },
+                { label: 'Furgone (commerciale)', value: 'commerciale' },
+              ],
+              admin: {
+                position: 'sidebar',
+                description:
+                  'Distingue le auto private dai veicoli commerciali.',
+              },
+            },
+            {
               name: 'featured',
               label: 'In evidenza',
               type: 'checkbox',
