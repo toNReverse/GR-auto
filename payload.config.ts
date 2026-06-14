@@ -66,7 +66,12 @@ export default buildConfig({
   plugins: [
     vercelBlobStorage({
       enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
-      collections: { media: true },
+      // disablePayloadAccessControl: i media vengono serviti direttamente dal
+      // CDN Blob (https://*.public.blob.vercel-storage.com) invece che dal
+      // proxy Payload (/api/media/file/...). Necessario perche' next/image
+      // accetta solo domini in whitelist (vedi next.config.mjs) e il dominio
+      // dell'app non lo e'. Le immagini media sono pubbliche (read: () => true).
+      collections: { media: { disablePayloadAccessControl: true } },
       token: process.env.BLOB_READ_WRITE_TOKEN || '',
     }),
   ],
