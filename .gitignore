@@ -34,3 +34,5 @@ GUIDA-CLIENTE.html
 # local-only files (not for production)
 drizzle.config.ts
 media/
+# Claude Code (config locale)
+.claude/
