@@ -1,22 +1,31 @@
 /**
  * Formattazione per il mercato italiano: prezzi in EUR, km e date.
  */
-export const eur = new Intl.NumberFormat('it-IT', {
-  style: 'currency',
-  currency: 'EUR',
-  maximumFractionDigits: 0,
-})
-
-export const num = new Intl.NumberFormat('it-IT')
+/**
+ * Raggruppa le migliaia con il punto (stile italiano) in modo DETERMINISTICO,
+ * identico tra server (Node) e browser. Non usa Intl per evitare il mismatch
+ * di idratazione di React (errore #418), causato da differenze nei caratteri
+ * di spazio/separatore tra le diverse versioni ICU.
+ */
+export function groupThousandsIt(value: number): string {
+  const rounded = Math.round(Math.abs(value))
+  const digits = rounded.toString()
+  let grouped = ''
+  for (let i = 0; i < digits.length; i++) {
+    if (i > 0 && (digits.length - i) % 3 === 0) grouped += '.'
+    grouped += digits[i]
+  }
+  return (value < 0 ? '-' : '') + grouped
+}
 
 export function formatPrice(value: number | null | undefined): string {
   if (value == null) return '—'
-  return eur.format(value)
+  return `${groupThousandsIt(value)} €`
 }
 
 export function formatKm(value: number | null | undefined): string {
   if (value == null) return '—'
-  return `${num.format(value)} km`
+  return `${groupThousandsIt(value)} km`
 }
 
 export function formatMonthYear(
