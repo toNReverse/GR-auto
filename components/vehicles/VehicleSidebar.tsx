@@ -1,29 +1,28 @@
-'use client'
-
-import { useState } from 'react'
-import { MessageSquare, Phone, CalendarCheck } from 'lucide-react'
+import { MessageSquare, Phone, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { LeadForm } from '@/components/forms/LeadForm'
 import { formatPrice } from '@/lib/utils/format'
 import type { Vehicle } from '@/payload-types'
-
-type Mode = 'closed' | 'info' | 'test-drive'
 
 export function VehicleSidebar({
   vehicle,
   whatsapp,
+  phone,
+  email,
 }: {
   vehicle: Vehicle
   whatsapp?: string | null
+  phone?: string | null
+  email?: string | null
 }) {
-  const [mode, setMode] = useState<Mode>('closed')
-
   const waMessage = encodeURIComponent(
     `Buongiorno, sono interessato/a a ${vehicle.title} (€ ${vehicle.price.toLocaleString('it-IT')}). Posso avere maggiori informazioni?`,
   )
   const waUrl = whatsapp
     ? `https://wa.me/${whatsapp.replace(/\D/g, '')}?text=${waMessage}`
     : undefined
+  const emailSubject = encodeURIComponent(
+    `Richiesta informazioni: ${vehicle.title}`,
+  )
 
   return (
     <aside className="space-y-4">
@@ -51,53 +50,32 @@ export function VehicleSidebar({
         ) : null}
 
         <div className="mt-5 grid gap-2">
-          <Button onClick={() => setMode('info')}>
-            <MessageSquare className="h-4 w-4" />
-            Richiedi informazioni
-          </Button>
-          <Button variant="outline" onClick={() => setMode('test-drive')}>
-            <CalendarCheck className="h-4 w-4" />
-            Prenota test drive
-          </Button>
+          {phone ? (
+            <Button asChild>
+              <a href={`tel:${phone.replace(/\s/g, '')}`}>
+                <Phone className="h-4 w-4" />
+                Chiama: {phone}
+              </a>
+            </Button>
+          ) : null}
           {waUrl ? (
             <Button asChild variant="secondary">
               <a href={waUrl} target="_blank" rel="noopener noreferrer">
-                <Phone className="h-4 w-4" />
+                <MessageSquare className="h-4 w-4" />
                 WhatsApp
+              </a>
+            </Button>
+          ) : null}
+          {email ? (
+            <Button asChild variant="outline">
+              <a href={`mailto:${email}?subject=${emailSubject}`}>
+                <Mail className="h-4 w-4" />
+                Scrivici una email
               </a>
             </Button>
           ) : null}
         </div>
       </div>
-
-      {mode !== 'closed' ? (
-        <div className="rounded-xl border border-ink-200 bg-white p-5">
-          <div className="mb-3 flex items-center justify-between">
-            <strong className="text-sm">
-              {mode === 'info' ? 'Richiedi informazioni' : 'Prenota test drive'}
-            </strong>
-            <button
-              type="button"
-              onClick={() => setMode('closed')}
-              className="text-xs text-ink-500 hover:text-ink-900"
-            >
-              Chiudi
-            </button>
-          </div>
-          <LeadForm
-            type={mode === 'info' ? 'info' : 'test-drive'}
-            vehicleId={vehicle.id}
-            submitLabel={
-              mode === 'info' ? 'Invia richiesta' : 'Richiedi appuntamento'
-            }
-            successText={
-              mode === 'info'
-                ? 'Grazie! Ti ricontattiamo a breve.'
-                : 'Test drive richiesto. Ti chiamiamo per confermare l\'appuntamento.'
-            }
-          />
-        </div>
-      ) : null}
     </aside>
   )
 }
