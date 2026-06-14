@@ -236,7 +236,12 @@ export default async function VehiclePage({ params }: Props) {
           </div>
 
           <div className="lg:row-span-2 lg:self-start lg:sticky lg:top-20">
-            <VehicleSidebar vehicle={vehicle} whatsapp={site.whatsapp} />
+            <VehicleSidebar
+              vehicle={vehicle}
+              whatsapp={site.whatsapp}
+              phone={site.phone}
+              email={site.email}
+            />
             <div className="mt-4">
               <FinanceCalculator price={vehicle.price} settings={finance} />
             </div>
