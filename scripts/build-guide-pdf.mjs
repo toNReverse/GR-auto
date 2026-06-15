@@ -55,7 +55,7 @@ const html = /* html */ `<!doctype html>
   blockquote p { margin: 0; }
   h2, h3 { break-after: avoid; }
   .cover { text-align: center; margin: 0 0 6mm; }
-  .cover-logo { width: 58mm; max-width: 70%; border-radius: 3mm; }
+  .cover-logo { width: 34mm; max-width: 45%; border-radius: 2.5mm; }
   .cover + h1 { text-align: center; }
 </style>
 </head>
