@@ -18,6 +18,11 @@ const root = path.join(__dirname, '..')
 const md = await readFile(path.join(root, 'docs', 'GUIDA.md'), 'utf-8')
 const htmlBody = marked.parse(md)
 
+// Logo GR AUTO incorporato in base64 (PDF autocontenuto)
+const logoBuf = await readFile(path.join(root, 'public', 'logo-gr-auto.jpg'))
+const logoDataUri = `data:image/jpeg;base64,${logoBuf.toString('base64')}`
+const cover = `<div class="cover"><img class="cover-logo" src="${logoDataUri}" alt="GR AUTO"></div>`
+
 const html = /* html */ `<!doctype html>
 <html lang="it">
 <head>
@@ -49,9 +54,13 @@ const html = /* html */ `<!doctype html>
   blockquote { margin: 0 0 3mm; padding: 2mm 4mm; background: #eef2ff; border-left: 3px solid #3a52c4; border-radius: 0 2mm 2mm 0; }
   blockquote p { margin: 0; }
   h2, h3 { break-after: avoid; }
+  .cover { text-align: center; margin: 0 0 6mm; }
+  .cover-logo { width: 58mm; max-width: 70%; border-radius: 3mm; }
+  .cover + h1 { text-align: center; }
 </style>
 </head>
 <body>
+${cover}
 ${htmlBody}
 </body>
 </html>`
