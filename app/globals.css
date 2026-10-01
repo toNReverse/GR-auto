@@ -38,4 +38,13 @@
     outline: 2px solid var(--color-brand-600);
     outline-offset: 2px;
   }
+  /* Il preflight di Tailwind v3 includeva `button, [role="button"]
+     { cursor: pointer }`; in v4 la regola e' stata rimossa e i bottoni tornano
+     al cursore di default del browser. Qui ripristiniamo la manina. I disabled
+     sono esclusi: Button usa disabled:pointer-events-none, gli input nativi
+     hanno gia' disabled:cursor-not-allowed. */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
 }
