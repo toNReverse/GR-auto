@@ -47,4 +47,10 @@
   [role='button']:not(:disabled) {
     cursor: pointer;
   }
+  /* I <select> hanno appearance-none e sono stilizzati come dropdown custom
+     (freccia disegnata a mano): senza questo mostrerebbero la freccia di
+     sistema invece della manina, al contrario di come appaiono. */
+  select:not(:disabled) {
+    cursor: pointer;
+  }
 }
